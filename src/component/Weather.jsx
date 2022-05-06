@@ -1,6 +1,8 @@
 import React, { useState } from "react";
+import Fade from "react-reveal/Fade";
+import Slide from "react-reveal/Slide";
+import Bounce from "react-reveal/Bounce";
 import "./Weather.css";
-
 function Weather() {
   const [location, setLocation] = useState("");
   const [loading, setLoading] = useState(false);
@@ -26,7 +28,11 @@ function Weather() {
       });
   }
   if (loading) {
-    return <h1>Loading data..... </h1>;
+    return (
+      <Fade>
+        <h1>Loading data..... </h1>;{" "}
+      </Fade>
+    );
   }
   function formSubmit(e) {
     e.preventDefault();
@@ -45,19 +51,22 @@ function Weather() {
       {error ? <h4 style={{ color: "red" }}>{error}</h4> : null}
 
       {data ? (
-        <div className="data">
-          <h1>Current Weather</h1>
-          <h3>Temperature - {Math.ceil(data.main.temp - 273.15)}°C</h3>
-          <h3>Pressure - {data.main.pressure}</h3>
-          <h3> Visibility - {data.visibility}</h3>
-          <h3> City - {data.name}</h3>
+        <Bounce top>
+          <div className="data">
+            <Slide top>
+              <h1>Current Weather</h1>
+            </Slide>
+            <h3>Temperature - {Math.ceil(data.main.temp - 273.15)}°C</h3>
+            <h3>Pressure - {data.main.pressure}</h3>
+            <h3> Visibility - {data.visibility}</h3>
+            <h3> City - {data.name}</h3>
 
-          <img
-            class="img"
-            src={`https://openweathermap.org/img/wn/${data.weather[0].icon}@2x.png`}
-            alt="weather"
-          />
-        </div>
+            <img
+              src={`https://openweathermap.org/img/wn/${data.weather[0].icon}@2x.png`}
+              alt="weather"
+            />
+          </div>
+        </Bounce>
       ) : null}
     </div>
   );

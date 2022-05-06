@@ -5,10 +5,10 @@
 body {
   height: 100vh;
   width: 100vw;
-  background-color: thistle;
   display: grid;
   place-items: center;
   grid-template-columns: 1fr;
+  background-color: thistle;
 }
 .App h1 {
   color: #180a0a;
@@ -20,8 +20,8 @@ body {
     height: 100vh;
   }
   .Container {
-    width: 100%;
-    height: 100%;
+    min-width: 50%;
+    min-height: 50%;
   }
   body h1 {
     padding: 0 15px;
